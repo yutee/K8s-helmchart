@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: api-deployment
+
+spec:
+
+  replicas:
+
+  selector:
+
+    matchLabels:
+
+      app: api
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: api
+
+    spec:
+
+      containers:
+
+      - name: api
+
+        image: hngtech11/hng-docker-api:day5
+
+        env:
+
+          - name: HNG_LESSON_DAY
+
+            valueFrom:
+
+              configMapKeyRef:
+
+                name: fe-api-config
+
+                key: HNG_LESSON_DAY
+
+
+          - name: HNG_API_ORIGINS
+            valueFrom:
+
+              configMapKeyRef:
+
+                name: fe-api-config
+
+                key: HNG_API_ORIGINS
+
+
+
+          - name: HNG_API_HOST
+            valueFrom:
+
+              configMapKeyRef:
+
+                name: fe-api-config
+
+                key: HNG_API_HOST
+
+
+          - name: HNG_API_PORT
+            valueFrom:
+
+              configMapKeyRef:
+
+                name: fe-api-config
+
+                key: HNG_API_PORT
+
+

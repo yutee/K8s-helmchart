@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: fe
+
+spec:
+
+  replicas:
+
+  selector:
+
+    matchLabels:
+
+      app: fe
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: fe
+
+    spec:
+
+      containers:
+
+      - name: fe
+
+        image: hngtech11/hng-docker-fe:day5
+
+        env:
+
+          - name: REACT_APP_LESSON_DAY
+
+            valueFrom:
+
+              configMapKeyRef:
+
+                name: fe-api-config
+
+                key: HNG_LESSON_DAY
+
+
+          - name: REACT_APP_API_URL
+            valueFrom:
+
+              configMapKeyRef:
+
+                name: fe-api-config
+
+                key: HNG_API_URL
+
+
