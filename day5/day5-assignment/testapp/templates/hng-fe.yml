@@ -4,7 +4,7 @@ kind: Deployment
 
 metadata:
 
-  name: fe
+  name: {{ .Release.Name }}-fe
 
 spec:
 
@@ -14,7 +14,7 @@ spec:
 
     matchLabels:
 
-      app: fe
+      app: {{ .Release.Name }}-fe
 
   template:
 
@@ -22,13 +22,13 @@ spec:
 
       labels:
 
-        app: fe
+        app: {{ .Release.Name }}-fe
 
     spec:
 
       containers:
 
-      - name: fe
+      - name: {{ .Release.Name }}-fe
 
         image: hngtech11/hng-docker-fe:day5
 

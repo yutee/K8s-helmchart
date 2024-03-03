@@ -4,7 +4,7 @@ kind: Deployment
 
 metadata:
 
-  name: api-deployment
+  name: {{ .Release.Name }}-api-deployment
 
 spec:
 
@@ -14,7 +14,7 @@ spec:
 
     matchLabels:
 
-      app: api
+      app: {{ .Release.Name }}-api
 
   template:
 
@@ -22,13 +22,13 @@ spec:
 
       labels:
 
-        app: api
+        app: {{ .Release.Name }}-api
 
     spec:
 
       containers:
 
-      - name: api
+      - name: {{ .Release.Name }}-api
 
         image: hngtech11/hng-docker-api:day5
 
